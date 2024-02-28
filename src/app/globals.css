@@ -3,27 +3,18 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --foreground-rgb: 0, 0, 0; /* Set text color to black */
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --foreground-rgb: 255, 255, 255; /* Keep text color white for dark mode */
   }
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  color: rgb(var(--foreground-rgb)); /* Apply text color */
+  background-color: rgb(255, 255, 255); /* Set background color to white */
 }
 
 @layer utilities {
@@ -31,3 +22,4 @@ body {
     text-wrap: balance;
   }
 }
+
