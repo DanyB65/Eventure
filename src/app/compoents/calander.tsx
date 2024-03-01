@@ -42,7 +42,7 @@ const Calendar: React.FC<CalendarProps> = ({
     <div>
       <DayPicker
         mode="single"
-        selected={selectedDay}
+        selected={selectedDay ? selectedDay : undefined}
         onSelect={handleSelect}
         fromMonth={fromDate} // Use fromDate to prevent navigating to past months
         toMonth={maxBookingDate} // Optionally restrict navigating beyond maxBookingDate

@@ -2,19 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0; /* Set text color to black */
+body {
+  --foreground-default: 0, 0, 0; /* Black text */
+  --background-default: 255, 255, 255; /* White background */
+  color: rgb(var(--foreground-default));
+  background-color: rgb(var(--background-default));
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255; /* Keep text color white for dark mode */
+  body {
+    
+    
   }
-}
-
-body {
-  color: rgb(var(--foreground-rgb)); /* Apply text color */
-  background-color: rgb(255, 255, 255); /* Set background color to white */
 }
 
 @layer utilities {
@@ -22,4 +21,3 @@ body {
     text-wrap: balance;
   }
 }
-
