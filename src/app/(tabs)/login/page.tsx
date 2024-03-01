@@ -1,7 +1,6 @@
 'use client'
 import { useState } from "react";
 import Header from "@/app/compoents/header";
-import sendLoginInfo from "@/app/(tabs)/login/sendLoginInfo"
 
 export default function Login() {
   const [formData, setFormData] = useState({
@@ -15,15 +14,19 @@ export default function Login() {
     bio: "",
   });
 
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const target = e.target as HTMLInputElement; // Cast to HTMLInputElement to access `checked`
+    const value = target.type === "checkbox" ? target.checked : target.value;
+    const name = target.name;
+  
     setFormData((prevFormData) => ({
       ...prevFormData,
-      [name]: type === "checkbox" ? checked : value,
+      [name]: value,
     }));
   };
+  
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
         // Create an object with the login info
         const loginInfo = {
@@ -36,9 +39,6 @@ export default function Login() {
           address: formData.address,
           bio: formData.bio
         };
-        
-        // Pass the login info object to the sendLoginInfo function
-        sendLoginInfo(loginInfo);
     }
 
   // Updated styles for the form container and inputs to reflect the desired theme
