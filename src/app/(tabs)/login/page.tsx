@@ -1,142 +1,78 @@
 'use client'
-import { useState } from "react";
-import Header from "@/app/compoents/header";
+import React, { useState } from 'react';
+import {SendUrl} from '@/app/(tabs)/login/send-login-info'
+import Header from '@/app/compoents/header';
 
-export default function Login() {
+export default function Register() {
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phoneNumber: "",
-    isBusinessOwner: false,
-    dateOfBirth: "",
-    address: "",
-    bio: "",
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: '', // Note: Consider security implications
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const target = e.target as HTMLInputElement; // Cast to HTMLInputElement to access `checked`
-    const value = target.type === "checkbox" ? target.checked : target.value;
-    const name = target.name;
-  
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [name]: value,
-    }));
+  const handleChange = (e: { target: { name: any; value: any; }; }) => {
+      const { name, value } = e.target;
+      setFormData(prevFormData => ({
+          ...prevFormData,
+          [name]: value,
+      }));
   };
-  
 
   const handleSubmit = (e: { preventDefault: () => void; }) => {
-    e.preventDefault();
-        // Create an object with the login info
-        const loginInfo = {
-          firstName: formData.firstName,
-          lastName: formData.lastName,
-          email: formData.email,
-          phoneNumber: formData.phoneNumber,
-          isBusinessOwner: formData.isBusinessOwner,
-          dateOfBirth: formData.dateOfBirth,
-          address: formData.address,
-          bio: formData.bio
-        };
-    }
+      e.preventDefault();
+      SendUrl(formData)
+          .then((result) => {
+              console.log(result); // Process success response
+          })
+          .catch((error) => {
+              console.error("Error:", error); // Handle errors
+          });
+  };
 
-  // Updated styles for the form container and inputs to reflect the desired theme
   return (
     <>
-      <Header />
-      <div
-        style={{
-          backgroundColor: "#333",
-          color: "white",
-          padding: "20px",
-          borderRadius: "8px",
-        }}
-      >
-        <h2>Login Page</h2>
-        <form
-          onSubmit={handleSubmit}
-          style={{ display: "flex", flexDirection: "column", gap: "10px",color:"black" }}
-        >
+    <Header/>
+      <h2>Create User Account</h2>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label>First Name:</label>
           <input
-            style={{ padding: "10px", borderRadius: "5px" ,color:"black"}}
+            type="text"
             name="firstName"
             value={formData.firstName}
             onChange={handleChange}
-            placeholder="First Name"
           />
+        </div>
+        <div>
+          <label>Last Name:</label>
           <input
-            style={{ padding: "10px", borderRadius: "5px" ,color:"black"}}
+            type="text"
             name="lastName"
             value={formData.lastName}
             onChange={handleChange}
-            placeholder="Last Name"
           />
+        </div>
+        <div>
+          <label>Email:</label>
           <input
-            style={{ padding: "10px", borderRadius: "5px",color:"black" }}
+            type="email"
             name="email"
             value={formData.email}
             onChange={handleChange}
-            placeholder="Email"
           />
+        </div>
+        <div>
+          <label>Password:</label>
           <input
-            style={{ padding: "10px", borderRadius: "5px",color:"black" }}
-            name="phoneNumber"
-            value={formData.phoneNumber}
+            type="password"
+            name="password"
+            value={formData.password}
             onChange={handleChange}
-            placeholder="Phone Number"
           />
-          <label style={{ display: "flex", alignItems: "center", gap: "10px",color:"black" }}>
-            Is Business Owner:
-            <input
-              name="isBusinessOwner"
-              type="checkbox"
-              checked={formData.isBusinessOwner}
-              onChange={handleChange}
-            />
-          </label>
-          <input
-            style={{ padding: "10px", borderRadius: "5px",color: "black" }}
-            name="dateOfBirth"
-            value={formData.dateOfBirth}
-            onChange={handleChange}
-            placeholder="Date of Birth"
-            type="date"
-          />
-          <input
-            style={{ padding: "10px", borderRadius: "5px" ,color:"black"}}
-            name="address"
-            value={formData.address}
-            onChange={handleChange}
-            placeholder="Address"
-          />
-          <textarea
-            style={{
-              padding: "10px",
-              borderRadius: "5px",
-              color: "black", // Ensure text color contrasts against the background
-              backgroundColor: "white", // Set a background color that contrasts with the text color
-            }}
-            name="bio"
-            value={formData.bio}
-            onChange={handleChange}
-            placeholder="Bio"
-          />
-          <button
-            type="submit"
-            style={{
-              padding: "10px",
-              borderRadius: "5px",
-              cursor: "pointer",
-              backgroundColor: "#555",
-              color: "white",
-              border: "none",
-            }}
-          >
-            Create User
-          </button>
-        </form>
-      </div>
+        </div>
+        <button type="submit">Register</button>
+      </form>
     </>
   );
 }

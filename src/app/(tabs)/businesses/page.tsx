@@ -5,7 +5,6 @@ import SearchBar from "@/app/compoents/searchBar";
     return (
       <>
         <Header />
-        <SearchBar/>
         <div style={{ backgroundColor: 'black', color: 'white' }}>Business page</div>
       </>
     );

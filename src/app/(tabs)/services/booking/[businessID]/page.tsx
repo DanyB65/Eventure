@@ -8,7 +8,6 @@ import TimePicker from "@/app/compoents/timePicker";
 export default function BusinessBooking({}) {
   const searchParams = useSearchParams();
   const id = searchParams.get("businessID");
-  console.log(id);
   const selectedBusiness = fakeData.find(
     (business) => business.id.toString() === id
   );
