@@ -1,6 +1,5 @@
 "use client";
 import { useSearchParams } from "next/navigation";
-import Header from "@/app/compoents/header";
 import fakeData from "@/app/compoents/fakedata";
 import Calendar from "@/app/compoents/calander";
 import TimePicker from "@/app/compoents/timePicker";
@@ -14,7 +13,6 @@ export default function BusinessBooking({}) {
 
   return (
     <>
-      <Header />
       <Calendar />
       <TimePicker onSelectTime={(time) => console.log(time)} />
 

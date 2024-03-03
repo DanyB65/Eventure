@@ -32,7 +32,7 @@ export default function Register() {
 
   return (
     <>
-    <Header/>
+    
       <h2>Create User Account</h2>
       <form onSubmit={handleSubmit}>
         <div>

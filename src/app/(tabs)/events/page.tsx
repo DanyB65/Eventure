@@ -10,7 +10,7 @@ function Events() {
 
   return (
     <>
-      <Header />
+      
       <div style={{ display: 'flex', padding: '20px' }}>
         <div>
           <Calendar/>

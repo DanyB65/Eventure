@@ -4,7 +4,6 @@ import Link from "next/link";
 export default function Home() {
   return (
     <>
-      <Header />
       <div className="min-h-screen bg-softTaupe flex flex-col justify-between">
         <section className="text-center py-20 px-4 bg-gradient-to-b from-magentaSky to-softTaupe">
           <h1 className="text-4xl font-bold text-cream mb-4">

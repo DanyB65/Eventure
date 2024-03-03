@@ -40,7 +40,7 @@ export default function Services() {
 
     return (
         <>
-            <Header/>
+            
             <SearchBar/>
             
             <div className="flex flex-wrap justify-start">
